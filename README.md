@@ -1,2 +1,2 @@
 # api-skeleton
-API SKELETO for faster development
+API SKELETON for faster development
