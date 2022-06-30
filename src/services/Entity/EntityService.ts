@@ -1,9 +1,11 @@
+import { autoInjectable } from "tsyringe";
 //import { Entity } from '../../domain/Entity';
 //import { EntityRepositoryFactory } from '../repository/EntityRepositoryFactory';
 //import IEntityRepository from '../../repository/IEntityRepository';
 import IEntityDTO from '../../dto/IEntityDTO';
 //import { EntityMapper } from '../mappers/EntityMapper';
 
+@autoInjectable()
 export class EntityService {
   //private repository: IEntityRepository;
 

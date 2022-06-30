@@ -1,4 +1,4 @@
-import { EntityController } from "./EntityController";
+import EntityController from "./EntityController";
 import { Request, Response, NextFunction } from 'express';
 
 export default interface IEntityController {

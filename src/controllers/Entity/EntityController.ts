@@ -1,13 +1,15 @@
+import { inject, injectable } from "tsyringe";
 import IEntityController from "./IEntityController";
 //import {EntityService} from "../services/EntityService";
 import { Request, Response, NextFunction } from 'express';
 import IEntityDTO from "../../dto/IEntityDTO";
 
-export class EntityController implements IEntityController {
+@injectable()
+export default class EntityController implements IEntityController {
   //private service: EntityService;
 
   constructor() {
-      //this.service = new EntityService();
+      //this.service = new EntityService();      
   }
 
   post = async (req: Request, res: Response, next: NextFunction) => {

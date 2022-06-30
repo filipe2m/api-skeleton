@@ -1,12 +1,14 @@
 import { Router } from 'express';
-import IEntityController, {entityController} from '../controllers/Entity/IEntityController';
+import { injectable, inject } from "tsyringe";
+import IEntityController from '../controllers/Entity/IEntityController';
 
+@injectable()
 export class EntityRoute {
-    private controller: IEntityController;
-
-    constructor() {
-        this.controller = entityController();
-    }
+    
+    constructor(
+        @inject("EntityController")
+        private controller: IEntityController
+    ) {}
 
     routes(app: Router) {
         app.post('/api/entity', this.controller.post);
