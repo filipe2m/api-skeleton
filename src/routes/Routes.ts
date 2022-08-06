@@ -1,15 +1,15 @@
 import {container} from "tsyringe";
-import {EntityRoute} from "./EntityRoute";
+import {SkeletonRoute} from "./SkeletonRoute";
 
  class Routes {
-    private _entity: EntityRoute;
+    private _skeleton: SkeletonRoute;
 
     constructor() {
-        this._entity = container.resolve(EntityRoute);
+        this._skeleton = container.resolve(SkeletonRoute);
     }
     
-    get entity(): EntityRoute{
-        return this._entity;
+    get skeleton(): SkeletonRoute{
+        return this._skeleton;
     }
 }
 export default Routes;
