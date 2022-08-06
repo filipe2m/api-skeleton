@@ -13,13 +13,11 @@ export default class SkeletonController implements ISkeletonController {
     private service: ISkeletonService
   ) {}
 
-  
-
   create = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     console.log(`SkeletonController: create: ${JSON.stringify(req.body)}`);
-    let skeletonDto: ISkeletonDTO = req.body;
+    const skeletonDto: ISkeletonDTO = req.body;
     try {
-      let result = await this.service.create(skeletonDto);
+      const result = await this.service.create(skeletonDto);
       res.status(201).send(result);
     } catch (err: any) {
       res.status(500).send(err.message);
@@ -36,18 +34,37 @@ export default class SkeletonController implements ISkeletonController {
     }
   };
 
-  // getById = async (req: Request, res: Response, next: NextFunction) => {
-  //   console.log(`SkeletonController: getById`);
-  //   this.service.getById();
-  // };
+  getById = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    console.log(`SkeletonController: getById: ${req.params.id}`);
+    const id: string = req.params.id;
+    try {
+      const result = await this.service.getById(id);
+      res.status(201).send(result);
+    } catch (err: any) {
+      res.status(500).send(err.message);
+    }
+  };
 
-  // update = async (req: Request, res: Response, next: NextFunction) => {
-  //   console.log(`SkeletonController: update`);
-  //   this.service.update();
-  // };
+  update = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    console.log(`SkeletonController: update: ${req.params.id}`);
+    const id: string = req.params.id;
+    const skeletonDto: ISkeletonDTO = req.body;
+    try {
+      let result = await this.service.update(id, skeletonDto);
+      res.status(201).send(result);
+    } catch (err: any) {
+      res.status(500).send(err.message);
+    }
+  };
 
-  // delete = async (req: Request, res: Response, next: NextFunction) => {
-  //   console.log(`SkeletonController: delete`);
-  //   this.service.delete();
-  // };
+  delete = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    console.log(`SkeletonController: delete: ${req.params.id}`);
+    const id: string = req.params.id;
+    try {
+      let result = await this.service.delete(id);
+      res.status(201).send(result);
+    } catch (err: any) {
+      res.status(500).send(err.message);
+    }
+  };
 }

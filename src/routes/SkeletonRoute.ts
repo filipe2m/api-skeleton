@@ -13,8 +13,8 @@ export class SkeletonRoute {
     routes(app: Router) {
         app.post('/api/skeleton', this.controller.create);
         app.get('/api/skeletons', this.controller.getAll);
-        // app.get('/api/skeleton/:id', this.controller.getById);
-        // app.put('/api/skeleton/:id', this.controller.update);
-        // app.delete('/api/skeleton/:id', this.controller.delete);
+        app.get('/api/skeleton/:id', this.controller.getById);
+        app.put('/api/skeleton/:id', this.controller.update);
+        app.delete('/api/skeleton/:id', this.controller.delete);
     }
 }

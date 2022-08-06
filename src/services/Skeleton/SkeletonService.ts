@@ -14,14 +14,14 @@ export default class SkeletonService implements ISkeletonService {
   
   create = async (skeletonDto: ISkeletonDTO): Promise<ISkeletonDTO> => {
     console.log(`SkeletonService: create: ${JSON.stringify(skeletonDto)}`);
-    let skeletonDomain = SkeletonMapper.toDomain(skeletonDto);
-    let result = await this.repository.create(skeletonDomain);
+    const skeletonDomain = SkeletonMapper.toDomain(skeletonDto);
+    const result = await this.repository.create(skeletonDomain);
     return SkeletonMapper.toDTO(result);
   };
 
   async getAll(): Promise<Array<ISkeletonDTO>> {
     console.log(`SkeletonService: getAll`);
-    let result = await this.repository.getAll();
+    const result = await this.repository.getAll();
     const resultInDTO = result.map((skeleton) => {
       return SkeletonMapper.toDTO(skeleton);
     });
@@ -29,18 +29,30 @@ export default class SkeletonService implements ISkeletonService {
     return resultInDTO;
   }
 
-  // async getById() {
-  //   console.log(`SkeletonService: getById`);
-  //   this.repository.getById();
-  // }
+  async getById(id: string): Promise<ISkeletonDTO> {
+    console.log(`SkeletonService: getById: ${id}`);
+    const result = await this.repository.getById(id);
+    return SkeletonMapper.toDTO(result);
+  }
 
-  // async update() {
-  //   console.log(`SkeletonService: update`);
-  //   this.repository.update();
-  // }
+  async update(id: string, skeletonDto: ISkeletonDTO): Promise<ISkeletonDTO> {
+    console.log(`SkeletonService: update: ${id} ${skeletonDto}`);
+    try {
+      const skeletonDomain = SkeletonMapper.toDomain(skeletonDto);
+      const result = await this.repository.update(id, skeletonDomain);
+      return SkeletonMapper.toDTO(result);
+    } catch (error) {
+      throw error;
+    }
+  }
 
-  // async delete() {
-  //   console.log(`SkeletonService: delete`);
-  //   this.repository.delete();
-  // }
+  async delete(id: string) {
+    console.log(`SkeletonService: delete`);
+    try {
+      const result = await this.repository.delete(id);
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
